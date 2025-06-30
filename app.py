@@ -77,11 +77,23 @@ with tabs[3]:
     st.header("🗺️ Geographic Analysis")
     st.markdown("Visualize order spread and profit contribution across global markets.")
 
-    geo_df = df.groupby(['Customer Country', 'Customer City']).agg({'Sales':'sum', 'Order Profit Per Order':'sum'}).reset_index()
+from pycountry import countries
+
+# Validate country names using pycountry
+valid_countries = set([c.name for c in countries])
+df_valid_geo = df[df['Customer Country'].isin(valid_countries)]
+
+geo_df = df_valid_geo.groupby(['Customer Country', 'Customer City']).agg(
+    {'Sales': 'sum', 'Order Profit Per Order': 'sum'}
+).reset_index()
+
+if not geo_df.empty:
     fig8 = px.scatter_geo(geo_df, locations="Customer Country", locationmode="country names",
                           color="Sales", hover_name="Customer City", size="Order Profit Per Order",
                           title="Sales & Profit by Country")
     st.plotly_chart(fig8, use_container_width=True)
+else:
+    st.warning("No valid countries found to plot geographic data.")
 
 # ---- CUSTOMER INSIGHTS ----
 with tabs[4]:
