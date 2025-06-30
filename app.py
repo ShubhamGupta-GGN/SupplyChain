@@ -16,7 +16,7 @@ tabs = st.tabs(["Overview", "Shipping & Delivery", "Sales & Profit", "Geographic
 # ---- OVERVIEW ----
 with tabs[0]:
     st.header("🔍 General Overview")
-    st.markdown("""These KPIs offer a quick glance at the overall scale of operations, customer base, and performance.")
+    st.markdown("These KPIs offer a quick glance at the overall scale of operations, customer base, and performance.")
 
     col1, col2, col3, col4 = st.columns(4)
     col1.metric("Total Orders", f"{df['Order Id'].nunique():,}")
