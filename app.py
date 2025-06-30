@@ -38,7 +38,7 @@ with tabs[0]:
 # ---- SHIPPING & DELIVERY ----
 with tabs[1]:
     st.header("🚚 Shipping & Delivery Performance")
-    st.markdown("""Track delivery risk, days to ship, and late deliveries across different shipping modes.")
+    st.markdown("Track delivery risk, days to ship, and late deliveries across different shipping modes.")
 
     shipping_mode = st.selectbox("Filter by Shipping Mode", df["Shipping Mode"].unique())
     filtered = df[df["Shipping Mode"] == shipping_mode]
