@@ -25,7 +25,7 @@ with tabs[0]:
     col4.metric("Avg Profit per Order ($)", f"{df['Order Profit Per Order'].mean():.2f}")
 
     st.markdown("---")
-    st.markdown("""Below is the distribution of order statuses and shipping modes used.")
+    st.markdown("Below is the distribution of order statuses and shipping modes used.")
 
     col5, col6 = st.columns(2)
     with col5:
