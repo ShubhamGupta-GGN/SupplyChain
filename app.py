@@ -60,7 +60,7 @@ with tabs[1]:
 # ---- SALES & PROFIT ----
 with tabs[2]:
     st.header("💰 Sales & Profit Trends")
-    st.markdown("""Understand how sales and profits vary over time and by shipping or product category.")
+    st.markdown("Understand how sales and profits vary over time and by shipping or product category.")
 
     df['order_date'] = pd.to_datetime(df['order date (DateOrders)'], errors='coerce')
     sales_by_month = df.groupby(df['order_date'].dt.to_period("M")).agg({'Sales':'sum', 'Order Profit Per Order':'sum'}).reset_index()
@@ -75,7 +75,7 @@ with tabs[2]:
 # ---- GEOGRAPHIC VIEW ----
 with tabs[3]:
     st.header("🗺️ Geographic Analysis")
-    st.markdown("""Visualize order spread and profit contribution across global markets.")
+    st.markdown("Visualize order spread and profit contribution across global markets.")
 
     geo_df = df.groupby(['Customer Country', 'Customer City']).agg({'Sales':'sum', 'Order Profit Per Order':'sum'}).reset_index()
     fig8 = px.scatter_geo(geo_df, locations="Customer Country", locationmode="country names",
@@ -86,7 +86,7 @@ with tabs[3]:
 # ---- CUSTOMER INSIGHTS ----
 with tabs[4]:
     st.header("🧑 Customer Segmentation")
-    st.markdown("""Explore customer behavior across segments and regions.")
+    st.markdown("Explore customer behavior across segments and regions.")
 
     fig9 = px.histogram(df, x="Customer Segment", color="Customer Segment", title="Orders by Customer Segment")
     fig10 = px.box(df, x="Customer Segment", y="Sales per customer", color="Customer Segment",
@@ -98,7 +98,7 @@ with tabs[4]:
 # ---- PRODUCT ANALYSIS ----
 with tabs[5]:
     st.header("📦 Product & Category Insights")
-    st.markdown("""Review best-selling products, discounts, and price-performance patterns.")
+    st.markdown("Review best-selling products, discounts, and price-performance patterns.")
 
     top_products = df.groupby("Product Name").agg({'Sales':'sum'}).sort_values("Sales", ascending=False).head(10).reset_index()
     fig11 = px.bar(top_products, x="Product Name", y="Sales", title="Top 10 Products by Sales")
